@@ -1,0 +1,6 @@
+framework module Pods_TraktTopTenUITests {
+  umbrella header "Pods-TraktTopTenUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

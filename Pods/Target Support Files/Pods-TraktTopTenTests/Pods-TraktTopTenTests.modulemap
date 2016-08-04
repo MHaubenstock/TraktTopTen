@@ -1,0 +1,6 @@
+framework module Pods_TraktTopTenTests {
+  umbrella header "Pods-TraktTopTenTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
