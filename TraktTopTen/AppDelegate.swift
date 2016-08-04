@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
@@ -41,6 +42,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        
+        var urlQueryDict : [String : String] = [:]
+        
+        //Create dict from url query
+        url.query?.componentsSeparatedByString("&").forEach {
+            param in
+                let paramComp = param.componentsSeparatedByString("=")
+                urlQueryDict[paramComp[0]] = paramComp[1]
+        }
+        
+        //If the url contained "code" param, then store it and continue with authentication
+        if(urlQueryDict["code"] != nil)
+        {
+            TraktAPIController.code = urlQueryDict["code"]
+            TraktAPIController.OAuthExchangeCodeForAccessToken()
+        }
+        
+        return true
+    }
 
 }
 
