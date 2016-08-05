@@ -7,36 +7,28 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class TraktTopTen : UIViewController
 {
 
     @IBOutlet weak var moviePanelContainer: UIScrollView!
     
-    var moviePanels : [UIView] = []
     let moviePanelOffset : CGFloat = 5.0
+    
+    var moviePanels : [UIView] = [] { didSet { updatePanels() } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        /*
-        //Load test map panel
-        for _ in 0...9
-        {
-            let moviePanel = NSBundle.mainBundle().loadNibNamed(String(MoviePanel), owner: self, options: nil)[0] as! MoviePanel
-            moviePanels.append(moviePanel)
-            moviePanelContainer.addSubview(moviePanel)
-        }
-        */
-        
-        //Load from api and display async
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         TraktAPIController.delegate = self
+        
+        //Load from api and display asynchronously
         beginOAuth()
     }
     
@@ -57,6 +49,11 @@ class TraktTopTen : UIViewController
         {
             self.didAuthenticate(true)
         }
+    }
+    
+    func updatePanels()
+    {
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,9 +86,23 @@ extension TraktTopTen : TraktAPIControllerDelegate
         }
     }
     
-    func didGetTrendingMovies()
+    func didGetTrendingMovies(movieJSON : JSON)
     {
-        
+        dispatch_async(dispatch_get_main_queue(),{
+            
+            self.moviePanelContainer.subviews.forEach { subView in subView.removeFromSuperview() }
+            
+            movieJSON.arrayValue.forEach { movie in
+                
+                //moviePanelContainer.subviews.forEach { subView in subView.removeFromSuperview() }
+                self.moviePanels.append(MoviePanel.FromJSON(movie))
+                self.moviePanelContainer.addSubview(MoviePanel.FromJSON(movie))
+                
+            }
+            
+            self.view.setNeedsLayout()
+            
+        })
     }
 }
 

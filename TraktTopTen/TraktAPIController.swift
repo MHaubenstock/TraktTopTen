@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
+
 class TraktAPIController : NSObject
 {
     static var delegate : TraktAPIControllerDelegate?
@@ -48,7 +50,7 @@ extension TraktAPIController
 {
     static func getTrendingMovies()
     {
-        let url = NSURL(string: "https://api.trakt.tv/movies/trending")!
+        let url = NSURL(string: "https://api.trakt.tv/movies/trending?extended=full,images&page=1&limit=10")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
@@ -56,12 +58,16 @@ extension TraktAPIController
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if let response = response, data = data {
-                print(response)
-                print(String(data: data, encoding: NSUTF8StringEncoding))
+            if let data = data {
                 
+                do
+                {
+                    let jsonObject : AnyObject! = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)
+                    
+                    delegate?.didGetTrendingMovies(JSON(jsonObject))
+                }
+                catch { }
                 
-                delegate?.didGetTrendingMovies()
             } else {
                 print(error)
             }
@@ -89,34 +95,8 @@ extension TraktAPIController
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.HTTPBody = "{\n  \"code\": \"\(code!)\",\n  \"client_id\": \"\(clientId)\",\n  \"client_secret\": \"\(clientSecret)\",\n  \"redirect_uri\": \"\(redirectURI)\",\n  \"grant_type\": \"authorization_code\"\n}".dataUsingEncoding(NSUTF8StringEncoding);
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if let data = data {
-                
-                do
-                {
-                    let responseDict = try (NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! [String : AnyObject]) ?? [String : AnyObject]()
-                    
-                    //Populate nsuserdefaults with response result
-                    accessToken = responseDict[AccessTokenKey] as? String
-                    refreshToken = responseDict[RefreshTokenKey] as? String
-                    expirationDate = (NSDate(timeIntervalSince1970: responseDict[CreatedAtKey] as! NSTimeInterval)).dateByAddingTimeInterval(responseDict[ExpiresInKey] as! NSTimeInterval)
-                    
-                    delegate?.didAuthenticate(true)
-                }
-                catch {
-                    delegate?.didAuthenticate(false)
-                    print("Failed to parse response from server. OAuth failed to authenticate.")
-                }
-                
-            } else {
-                delegate?.didAuthenticate(false)
-                print(error)
-            }
-        }
-        
-        task.resume()
+    
+        ExecuteTokenRequest(request)
     }
     
     static func OAuthExchangeRefreshTokenForAccessToken()
@@ -128,27 +108,23 @@ extension TraktAPIController
         
         request.HTTPBody = "{\n  \"refresh_token\": \"\(refreshToken!)\",\n  \"client_id\": \"\(clientId)\",\n  \"client_secret\": \"\(clientSecret)\",\n  \"redirect_uri\": \"\(redirectURI)\",\n  \"grant_type\": \"refresh_token\"\n}".dataUsingEncoding(NSUTF8StringEncoding);
         
+        ExecuteTokenRequest(request)
+    }
+    
+    static func ExecuteTokenRequest(request : NSURLRequest)
+    {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let data = data {
                 
-                do
-                {
-                    let responseDict = try (NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! [String : AnyObject]) ?? [String : AnyObject]()
-                    
-                    //Populate nsuserdefaults with response result
-                    accessToken = responseDict[AccessTokenKey] as? String
-                    refreshToken = responseDict[RefreshTokenKey] as? String
-                    expirationDate = (NSDate(timeIntervalSince1970: responseDict[CreatedAtKey] as! NSTimeInterval)).dateByAddingTimeInterval(responseDict[ExpiresInKey] as! NSTimeInterval)
-                    
-                    delegate?.didAuthenticate(true)
-                }
-                catch {
-                    
-                    delegate?.didAuthenticate(false)
-                    print("Failed to parse response from server. OAuth failed to authenticate.")
-                }
+                let json = JSON(data)
                 
+                //Populate nsuserdefaults with response result
+                accessToken = json[AccessTokenKey].string
+                refreshToken = json[RefreshTokenKey].string
+                expirationDate = (NSDate(timeIntervalSince1970: json[CreatedAtKey].object as! NSTimeInterval)).dateByAddingTimeInterval(json[ExpiresInKey].object as! NSTimeInterval)
+                
+                delegate?.didAuthenticate(true)
                 
             } else {
                 delegate?.didAuthenticate(false)
@@ -163,5 +139,5 @@ extension TraktAPIController
 protocol TraktAPIControllerDelegate
 {
     func didAuthenticate(isAuthenticated : Bool)
-    func didGetTrendingMovies()
+    func didGetTrendingMovies(movieJSON : JSON)
 }

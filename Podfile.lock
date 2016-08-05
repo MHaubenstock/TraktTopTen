@@ -1,3 +1,18 @@
-PODFILE CHECKSUM: 33c3cb5c08563ee0192f2fc5fb53cfd46a7a924c
+PODS:
+  - AsyncImageDownloader (1.0.0)
+  - RateView (1.2)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - AsyncImageDownloader
+  - RateView
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  AsyncImageDownloader: 25801655cccb75e828ca30464da694ce57e6b2e0
+  RateView: d4d12e9bb76dc23a77a56f4e5c5fb530a3f3f998
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+PODFILE CHECKSUM: 5853391a67c441ee45eaa6366ccd2e015e65cd44
 
 COCOAPODS: 1.0.1

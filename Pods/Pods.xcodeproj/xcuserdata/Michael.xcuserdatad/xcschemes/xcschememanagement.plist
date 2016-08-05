@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AsyncImageDownloader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TraktTopTen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,10 +24,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RateView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0746B2EC573395F5754C2C5585561057</key>
+		<key>02148A598A1BB95074CF74042FAA799F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21E192F32216FB22FB800FF959294596</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>25AC5395A6C017E324B4CB7856626BA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -33,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>EF6E80D81EBB7FFBC387AFCC2BDD56A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F743495D4912ADF0AE72E8F8973A285B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

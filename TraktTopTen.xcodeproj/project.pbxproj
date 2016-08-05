@@ -16,7 +16,6 @@
 		4C0AC6591D528EDB00550053 /* TraktTopTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC6581D528EDB00550053 /* TraktTopTenTests.swift */; };
 		4C0AC6641D528EDB00550053 /* TraktTopTenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC6631D528EDB00550053 /* TraktTopTenUITests.swift */; };
 		4C0AC6721D52903900550053 /* TraktAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC6711D52903900550053 /* TraktAPIController.swift */; };
-		4C0AC6741D52905200550053 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC6731D52905200550053 /* Constant.swift */; };
 		4C0AC6761D5294DD00550053 /* MoviePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0AC6751D5294DD00550053 /* MoviePanel.xib */; };
 		4C0AC67B1D52B9A300550053 /* MoviePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC67A1D52B9A300550053 /* MoviePanel.swift */; };
 		969294A46FDB4F528DF6AEF2 /* Pods_TraktTopTen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C188ED2F443F0D8E48538FE2 /* Pods_TraktTopTen.framework */; };
@@ -56,7 +55,6 @@
 		4C0AC6631D528EDB00550053 /* TraktTopTenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktTopTenUITests.swift; sourceTree = "<group>"; };
 		4C0AC6651D528EDB00550053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0AC6711D52903900550053 /* TraktAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktAPIController.swift; sourceTree = "<group>"; };
-		4C0AC6731D52905200550053 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4C0AC6751D5294DD00550053 /* MoviePanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviePanel.xib; sourceTree = "<group>"; };
 		4C0AC67A1D52B9A300550053 /* MoviePanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePanel.swift; sourceTree = "<group>"; };
 		776E3DAA4726D283B60B2268 /* Pods-TraktTopTen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTopTen.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTopTen/Pods-TraktTopTen.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				4C0AC6431D528EDB00550053 /* AppDelegate.swift */,
-				4C0AC6731D52905200550053 /* Constant.swift */,
 				4C0AC6451D528EDB00550053 /* TraktTopTen.swift */,
 				4C0AC6711D52903900550053 /* TraktAPIController.swift */,
 				4C0AC67A1D52B9A300550053 /* MoviePanel.swift */,
@@ -444,7 +441,6 @@
 				4C0AC6441D528EDB00550053 /* AppDelegate.swift in Sources */,
 				4C0AC6721D52903900550053 /* TraktAPIController.swift in Sources */,
 				4C0AC67B1D52B9A300550053 /* MoviePanel.swift in Sources */,
-				4C0AC6741D52905200550053 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

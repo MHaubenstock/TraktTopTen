@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -57,38 +57,35 @@
                         <constraint firstAttribute="height" constant="369" id="xK4-dM-9MZ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhV-Ea-FX2">
-                    <rect key="frame" x="282" y="185" width="310" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Ef3-UK-nCx"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xek-8z-cwQ" customClass="RateView">
+                    <rect key="frame" x="282" y="185" width="310" height="47"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aru-E9-Bh0" firstAttribute="top" secondItem="zyU-Eo-LGN" secondAttribute="bottom" constant="8" symbolic="YES" id="00r-X2-eHd"/>
-                <constraint firstItem="aru-E9-Bh0" firstAttribute="trailing" secondItem="uhV-Ea-FX2" secondAttribute="trailing" id="3eq-9x-5bm"/>
                 <constraint firstItem="dor-xs-AJq" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="5L1-M7-p4T"/>
                 <constraint firstItem="8ly-98-BqU" firstAttribute="leading" secondItem="dor-xs-AJq" secondAttribute="leading" id="5dQ-aO-ssM"/>
-                <constraint firstItem="aru-E9-Bh0" firstAttribute="leading" secondItem="uhV-Ea-FX2" secondAttribute="leading" id="832-ba-IlV"/>
+                <constraint firstItem="xek-8z-cwQ" firstAttribute="leading" secondItem="aru-E9-Bh0" secondAttribute="leading" id="C2E-Y7-DVV"/>
+                <constraint firstItem="xek-8z-cwQ" firstAttribute="trailing" secondItem="dor-xs-AJq" secondAttribute="trailing" id="GOa-Pe-IbN"/>
                 <constraint firstItem="zyU-Eo-LGN" firstAttribute="leading" secondItem="8ly-98-BqU" secondAttribute="trailing" constant="8" symbolic="YES" id="GvK-sV-JMO"/>
                 <constraint firstItem="zyU-Eo-LGN" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="Mik-Nz-P2O"/>
                 <constraint firstItem="dor-xs-AJq" firstAttribute="top" secondItem="8ly-98-BqU" secondAttribute="bottom" constant="8" symbolic="YES" id="QoO-UG-9Si"/>
                 <constraint firstItem="8ly-98-BqU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RSz-Go-5qx"/>
                 <constraint firstItem="8ly-98-BqU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="TCC-hD-bAb"/>
                 <constraint firstItem="zyU-Eo-LGN" firstAttribute="trailing" secondItem="aru-E9-Bh0" secondAttribute="trailing" id="VCZ-EE-LfJ"/>
-                <constraint firstItem="uhV-Ea-FX2" firstAttribute="trailing" secondItem="dor-xs-AJq" secondAttribute="trailing" id="VJn-yF-Yah"/>
                 <constraint firstItem="zyU-Eo-LGN" firstAttribute="leading" secondItem="aru-E9-Bh0" secondAttribute="leading" id="XVp-A0-Ed6"/>
                 <constraint firstItem="8ly-98-BqU" firstAttribute="top" secondItem="zyU-Eo-LGN" secondAttribute="top" id="ZyZ-Cf-f41"/>
-                <constraint firstItem="uhV-Ea-FX2" firstAttribute="top" secondItem="aru-E9-Bh0" secondAttribute="bottom" constant="8" symbolic="YES" id="obm-dg-dKm"/>
+                <constraint firstItem="xek-8z-cwQ" firstAttribute="trailing" secondItem="aru-E9-Bh0" secondAttribute="trailing" id="moZ-Wh-b4T"/>
+                <constraint firstItem="xek-8z-cwQ" firstAttribute="top" secondItem="aru-E9-Bh0" secondAttribute="bottom" constant="8" symbolic="YES" id="n0q-WP-7pA"/>
+                <constraint firstAttribute="bottom" secondItem="xek-8z-cwQ" secondAttribute="bottom" constant="368" id="rZj-Kt-csx"/>
             </constraints>
             <connections>
+                <outlet property="movieDescription" destination="f6r-GY-SNm" id="XRl-NF-EQl"/>
                 <outlet property="moviePoster" destination="8ly-98-BqU" id="cxP-fC-8Lq"/>
                 <outlet property="movieTitle" destination="zyU-Eo-LGN" id="8Ig-Sa-hZb"/>
-                <outlet property="rating" destination="uhV-Ea-FX2" id="la8-YD-r2t"/>
+                <outlet property="rating" destination="xek-8z-cwQ" id="kh4-ZF-0Wf"/>
                 <outlet property="tagline" destination="aru-E9-Bh0" id="yhW-j1-qSp"/>
             </connections>
         </view>
