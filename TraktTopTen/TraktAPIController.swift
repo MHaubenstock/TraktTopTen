@@ -124,10 +124,10 @@ extension TraktAPIController
                 refreshToken = json[RefreshTokenKey].string
                 expirationDate = (NSDate(timeIntervalSince1970: json[CreatedAtKey].object as! NSTimeInterval)).dateByAddingTimeInterval(json[ExpiresInKey].object as! NSTimeInterval)
                 
-                delegate?.didAuthenticate(true)
+                delegate?.didAuthenticate()
                 
             } else {
-                delegate?.didAuthenticate(false)
+                delegate?.failedToAuthenticate()
                 print(error)
             }
         }
@@ -138,6 +138,7 @@ extension TraktAPIController
 
 protocol TraktAPIControllerDelegate
 {
-    func didAuthenticate(isAuthenticated : Bool)
+    func didAuthenticate()
+    func failedToAuthenticate()
     func didGetTrendingMovies(movieJSON : JSON)
 }

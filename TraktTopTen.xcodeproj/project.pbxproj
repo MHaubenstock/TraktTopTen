@@ -20,6 +20,7 @@
 		4C0AC67B1D52B9A300550053 /* MoviePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0AC67A1D52B9A300550053 /* MoviePanel.swift */; };
 		969294A46FDB4F528DF6AEF2 /* Pods_TraktTopTen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C188ED2F443F0D8E48538FE2 /* Pods_TraktTopTen.framework */; };
 		BDED0A6DA279F18C86190BCD /* Pods_TraktTopTenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DCE451A08A7362AA4842A24 /* Pods_TraktTopTenTests.framework */; };
+		D3751C6D1D54E02F00A1CB89 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3751C6C1D54E02F00A1CB89 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A37793AC0CC1A2AF334EE113 /* Pods_TraktTopTenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraktTopTenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49B10CCDA530D74210CB5A3 /* Pods-TraktTopTenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTopTenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTopTenTests/Pods-TraktTopTenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C188ED2F443F0D8E48538FE2 /* Pods_TraktTopTen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraktTopTen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3751C6C1D54E02F00A1CB89 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3751C6D1D54E02F00A1CB89 /* Social.framework in Frameworks */,
 				969294A46FDB4F528DF6AEF2 /* Pods_TraktTopTen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +170,7 @@
 		7F0A618573B60E5B54614B4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3751C6C1D54E02F00A1CB89 /* Social.framework */,
 				C188ED2F443F0D8E48538FE2 /* Pods_TraktTopTen.framework */,
 				1DCE451A08A7362AA4842A24 /* Pods_TraktTopTenTests.framework */,
 				A37793AC0CC1A2AF334EE113 /* Pods_TraktTopTenUITests.framework */,
@@ -181,12 +185,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0AC6681D528EDB00550053 /* Build configuration list for PBXNativeTarget "TraktTopTen" */;
 			buildPhases = (
+				51D0CE93F34DC327A5D696B0 /* 📦 Check Pods Manifest.lock */,
 				6A901CB81898D9E05B4C8E6C /* [CP] Check Pods Manifest.lock */,
 				4C0AC63C1D528EDB00550053 /* Sources */,
 				4C0AC63D1D528EDB00550053 /* Frameworks */,
 				4C0AC63E1D528EDB00550053 /* Resources */,
 				52BACFDFE0F2C6E83944818C /* [CP] Embed Pods Frameworks */,
 				1E130EEA4E8D69F85DEDDCAF /* [CP] Copy Pods Resources */,
+				04DCE7198CB7A2CF2AA46A65 /* 📦 Embed Pods Frameworks */,
+				37462A73C499966B025E96C7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,12 +208,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0AC66B1D528EDB00550053 /* Build configuration list for PBXNativeTarget "TraktTopTenTests" */;
 			buildPhases = (
+				AA542FD942A593C6F5C61AD1 /* 📦 Check Pods Manifest.lock */,
 				10076F345684D4E45F15FA7E /* [CP] Check Pods Manifest.lock */,
 				4C0AC6501D528EDB00550053 /* Sources */,
 				4C0AC6511D528EDB00550053 /* Frameworks */,
 				4C0AC6521D528EDB00550053 /* Resources */,
 				6924F1D06DA84B517258A59B /* [CP] Embed Pods Frameworks */,
 				7E985B5CC297E80E48D88BD5 /* [CP] Copy Pods Resources */,
+				739128050735EF36476A8F82 /* 📦 Embed Pods Frameworks */,
+				3BD2B019DBC9C56CA9A80435 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,11 +232,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0AC66E1D528EDB00550053 /* Build configuration list for PBXNativeTarget "TraktTopTenUITests" */;
 			buildPhases = (
+				974A7AAC2624276C8E5BE4CE /* 📦 Check Pods Manifest.lock */,
 				1AA5BD6CA4880A4D690ED2E9 /* [CP] Check Pods Manifest.lock */,
 				4C0AC65B1D528EDB00550053 /* Sources */,
 				4C0AC65C1D528EDB00550053 /* Frameworks */,
 				4C0AC65D1D528EDB00550053 /* Resources */,
 				988D5038BC6D6D024E2903E5 /* [CP] Copy Pods Resources */,
+				E1249599D615710F9925316D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -310,6 +322,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04DCE7198CB7A2CF2AA46A65 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTen/Pods-TraktTopTen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		10076F345684D4E45F15FA7E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,6 +380,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTen/Pods-TraktTopTen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37462A73C499966B025E96C7 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTen/Pods-TraktTopTen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BD2B019DBC9C56CA9A80435 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTenTests/Pods-TraktTopTenTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51D0CE93F34DC327A5D696B0 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		52BACFDFE0F2C6E83944818C /* [CP] Embed Pods Frameworks */ = {
@@ -400,6 +472,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		739128050735EF36476A8F82 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTenTests/Pods-TraktTopTenTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7E985B5CC297E80E48D88BD5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +502,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTenTests/Pods-TraktTopTenTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		974A7AAC2624276C8E5BE4CE /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		988D5038BC6D6D024E2903E5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,6 +525,36 @@
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraktTopTenUITests/Pods-TraktTopTenUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA542FD942A593C6F5C61AD1 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1249599D615710F9925316D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

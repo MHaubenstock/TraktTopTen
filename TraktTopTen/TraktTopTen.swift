@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Social
 
 class TraktTopTen : UIViewController
 {
@@ -15,8 +16,8 @@ class TraktTopTen : UIViewController
     @IBOutlet weak var moviePanelContainer: UIScrollView!
     
     let moviePanelOffset : CGFloat = 5.0
+    var moviePanels : [MoviePanel] = []
     
-    var moviePanels : [UIView] = [] { didSet { updatePanels() } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +48,8 @@ class TraktTopTen : UIViewController
         }
         else
         {
-            self.didAuthenticate(true)
+            self.didAuthenticate()
         }
-    }
-    
-    func updatePanels()
-    {
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,48 +57,127 @@ class TraktTopTen : UIViewController
         //Layout panels in scroll view
         for (index, panel) in moviePanels.enumerate()
         {
-            panel.frame = CGRect(x: CGFloat(index) * (moviePanelContainer.frame.size.width + moviePanelOffset), y: 0.0, width: moviePanelContainer.frame.size.width, height: moviePanelContainer.frame.size.height)
+            let panelX = CGFloat(index / 2) * (moviePanelContainer.frame.size.width / 2 + moviePanelOffset)
+            let panelY = CGFloat(index % 2) * ((moviePanelContainer.frame.size.height / 2) + moviePanelOffset)
+            let panelWidth = (moviePanelContainer.frame.size.width / 2) - moviePanelOffset
+            let panelHeight = (moviePanelContainer.frame.size.height / 2) - moviePanelOffset
+            
+            panel.frame = CGRect(x: panelX, y: panelY, width: panelWidth, height: panelHeight)
         }
         
         //Set content size of scroll view
-        let panelCount = CGFloat(moviePanels.count)
-        moviePanelContainer.contentSize = CGSize(width: (panelCount * moviePanelContainer.frame.size.width) + ((panelCount - 1) * moviePanelOffset), height: moviePanelContainer.frame.size.height)
+        let panelCount = CGFloat(moviePanels.count / 2)
+        moviePanelContainer.contentSize = CGSize(width: (panelCount * moviePanelContainer.frame.size.width / 2) + ((panelCount - 2) * moviePanelOffset), height: moviePanelContainer.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func refresh(sender: AnyObject)
+    {
+        TraktAPIController.getTrendingMovies()
+    }
 }
 
+// MARK: TraktAPIControllerDelegate functions
 extension TraktTopTen : TraktAPIControllerDelegate
 {
-    func didAuthenticate(isAuthenticated: Bool)
+    func didAuthenticate()
     {
-        if isAuthenticated
-        {
-            //Load the movie data
-            TraktAPIController.getTrendingMovies()
-        }
+        //Load the movie data
+        TraktAPIController.getTrendingMovies()
+    }
+    
+    func failedToAuthenticate()
+    {
+        print("App failed to authenticate with Trakt")
     }
     
     func didGetTrendingMovies(movieJSON : JSON)
     {
         dispatch_async(dispatch_get_main_queue(),{
             
-            self.moviePanelContainer.subviews.forEach { subView in subView.removeFromSuperview() }
+            self.moviePanels.forEach { panel in panel.removeFromSuperview() }
+            self.moviePanels = []
             
             movieJSON.arrayValue.forEach { movie in
                 
-                //moviePanelContainer.subviews.forEach { subView in subView.removeFromSuperview() }
-                self.moviePanels.append(MoviePanel.FromJSON(movie))
-                self.moviePanelContainer.addSubview(MoviePanel.FromJSON(movie))
+                let moviePanel = MoviePanel.FromJSON(movie)
+                
+                moviePanel.delegate = self
+                self.moviePanels.append(moviePanel)
+                self.moviePanelContainer.addSubview(moviePanel)
                 
             }
             
             self.view.setNeedsLayout()
             
         })
+    }
+}
+
+// MARK: MoviePanelDelegate functions
+extension TraktTopTen : MoviePanelDelegate
+{
+    func didRequestShareAction(moviePanel : MoviePanel)
+    {
+        let message = "I'm looking forward to seeing \(moviePanel.movieTitle.text!) soon!"
+        let alertView = UIAlertController(title: "Share on Social Media", message: "Where would you like to share to?", preferredStyle: .ActionSheet)
+        
+        let shareFacebookAction = UIAlertAction(title: "Share on Facebook", style: .Default, handler: {
+            
+            action in
+            
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook)
+            {
+                let facebookComposeVC = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                
+                facebookComposeVC.setInitialText(message)
+                
+                self.presentViewController(facebookComposeVC, animated: true, completion: nil)
+            }
+            else
+            {
+                print("You are not connected to your Facebook account.")
+            }
+        })
+        
+        let shareTwitterAction = UIAlertAction(title: "Share on Twitter", style: .Default, handler: {
+            
+            action in
+            
+            if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+                let twitterComposeVC = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                
+                // Set the note text as the default post message.
+                if message.characters.count <= 140 {
+                    twitterComposeVC.setInitialText(message)
+                    
+                    self.presentViewController(twitterComposeVC, animated: true, completion: nil)
+                }
+                else {
+                    let subMessage = message.substringToIndex(message.startIndex.advancedBy(140))
+                    twitterComposeVC.setInitialText(subMessage)
+                }
+            }
+            else {
+                print("You are not logged in to your Twitter account.")
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+        
+        alertView.addAction(shareFacebookAction)
+        alertView.addAction(shareTwitterAction)
+        alertView.addAction(cancelAction)
+        
+        let popoverPresentationController = alertView.popoverPresentationController!
+        popoverPresentationController.sourceView = moviePanel.shareButton
+        popoverPresentationController.sourceRect = moviePanel.shareButton.bounds
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
 }
 
